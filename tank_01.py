@@ -15,44 +15,48 @@
 """
 
 class Tank:
-    pointer = 'NESW'  # 方向指针
-    shift = {'N': 'y+1', 'S': 'y-1', 'W': 'x-1', 'E': 'x+1'}  # 位移偏量
 
-    def __init__(self, position, direction):
-        self.x, self.y = position
-        self.direction = direction
-        self.position = (self.x, self.y)
+    pointer_str = 'NESW'  # 方向
 
-    def signal(self, orders):
-        for i in orders:
+    def __init__(self, x, y, d):
+        """
+        :param x: x轴
+        :param y: y轴
+        :param d: 方向
+        """
+        self.x = x
+        self.y = y
+        self.d = d
+
+    def turn(self, i):
+        index = self.pointer_str.index(self.d)
+        if i == 'L':
+            index -= 1
+        else:
+            index += 1
+        self.d = self.pointer_str[index % 4]
+
+    def move(self):
+        if self.d == 'W':
+            self.x -= 1
+        elif self.d == 'E':
+            self.x += 1
+        elif self.d == 'N':
+            self.y += 1
+        else:
+            self.y -= 1
+
+    def main(self, signal):
+        for i in signal:
             if i in 'LR':
                 self.turn(i)
             elif i == 'M':
                 self.move()
             elif i == 'P':
-                self.pd()
-
-    def turn(self, orders):
-        i = self.pointer.find(self.direction)
-        if orders == 'L':
-            i -= 1
-        elif orders == 'R':
-            i += 1
-        self.direction = self.pointer[i % 4]
-
-    def move(self):
-        orders = self.shift[self.direction]
-        if orders[0] == 'x':
-            x = self.x
-            self.x = eval(orders)
-        else:
-            y = self.y
-            self.y = eval(orders)
-        self.position = (self.x, self.y)
-
-    def pd(self):
-        print(self.position, self.direction)
+                print(self.x, self.y, self.d)
 
 
-tank = Tank((11, 39), 'W')
-tank.signal('MTMPRPMTMLMRPRMTPLMMTLMRRMP')
+if __name__ == '__main__':
+    tank = Tank(11, 39, 'W')
+    tank.main('MTMPRPMTMLMRPRMTPLMMTLMRRMP')
+
