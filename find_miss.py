@@ -1,3 +1,4 @@
+
 def find_miss():
     for a in range(1, len(A) + 2):
         if a not in A:
