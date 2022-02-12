@@ -43,16 +43,7 @@
 
 ###### 闭包 装饰器
 1. 闭包：指在方法内引用方法外定义的非全局变量。内部方法使用外部方法中定义的非全局变量。  
-   ```python
-   def fun_out():
-      num = 10
-      def fun_inner():
-         return num
-      return fun_inner
-   
-   test = fun_out
-   test()
-   ```
+   eg: [闭包](/script/bibao_decorator.py)
 
 ###### 迭代器 生成器
 
