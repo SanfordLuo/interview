@@ -1,7 +1,9 @@
 ### python 基础
-垃圾回收 GIL 深浅拷贝 闭包 装饰器 静态方法 类方法 实例方法
-线程 进程 协程 异步
-设计模式
+1. [垃圾回收](/docs/python_basis.md#垃圾回收)
+   [深浅拷贝](/docs/python_basis.md#深浅拷贝)
+   [闭包-装饰器](/docs/python_basis.md#闭包-装饰器)
+   [迭代器-生成器](/docs/python_basis.md#迭代器-生成器)
+   [静态方法-类方法-实例方法](/docs/python_basis.md#静态方法-类方法-实例方法)
 
 ###### 垃圾回收
 引用计数为主，标记-清除和隔代回收为辅  
@@ -41,19 +43,6 @@
 
 ###### 闭包 装饰器
 
+###### 迭代器 生成器
+
 ###### 静态方法 类方法 实例方法
-
-
-### 框架部分
-Django Tornado
-
-### 数据库
-Mysql, Redis, ES
-
-### 消息队列
-Kafka, RabbitMq, Celery
-
-### 协议
-TCP, UDP, HTTP, HTTPS, Nginx
-
-### linux 容器
