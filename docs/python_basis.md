@@ -54,7 +54,7 @@
    eg: [bi_bao_nonlocal](/script/bibao_decorator.py)
 装饰器
 4. 定义：装饰器是闭包形式的一种实现，将函数作为一个参数，形成一个特殊的闭包。  
-   eg: 耗时统计[decorator_outer](/script/bibao_decorator.py)
+   eg: 耗时统计[decorator_outer](/script/bibao_decorator.py)  
    eg: 参数化装饰器，装饰器工厂函数[decorator_factory](/script/bibao_decorator.py)
 5. 注意：增加@functools.wraps(func), 可以保持当前装饰器去装饰的函数的 __name__的值不变。
 
