@@ -24,8 +24,8 @@
    数据传输的事务：最多一次：消费者先提交偏移量再处理事务；最少一次：先处理事务再提交偏移量。  
    消息丢失：生产者push消息的时候broker挂了；消费者已经提交偏移量但是处理消息的时候异常了；leader所在的broker挂掉时消息还未完全备份到follower。  
 4. 示例
-   [生产者](tool_demos/script/kafka_producer.py)
-   [消费者](tool_demos/script/kafka_consumer.py)
+   [生产者](https://github.com/SanfordLuo/tool_demos/blob/master/script/kafka_producer.py)
+   [消费者](https://github.com/SanfordLuo/tool_demos/blob/master/script/kafka_consumer.py)
 
 ###### RabbitMq
 
