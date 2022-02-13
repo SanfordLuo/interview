@@ -15,7 +15,9 @@ Django Tornado
 Mysql, Redis, ES
 
 ### 消息队列
-Kafka, RabbitMq, Celery
+   [Kafka](/docs/message_queue.md#Kafka)
+   [RabbitMq](/docs/message_queue.md#RabbitMq)
+   [Celery](/docs/message_queue.md#Celery)
 
 ### 协议
 TCP, UDP, HTTP, HTTPS, Nginx
