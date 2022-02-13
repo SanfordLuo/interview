@@ -8,9 +8,6 @@
 2. GIL 线程 进程 协程 异步
 3. 设计模式
 
-### 框架部分
-Django Tornado
-
 ### 数据库
 Mysql, Redis, ES
 
@@ -23,3 +20,7 @@ Mysql, Redis, ES
 TCP, UDP, HTTP, HTTPS, Nginx
 
 ### linux 容器
+
+### 框架部分
+1. [Django](/docs/framework.md#Django)
+   [Tornado](/docs/framework.md#Tornado)
