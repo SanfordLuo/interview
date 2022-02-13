@@ -46,8 +46,12 @@
    eg: a = [1, [2, 3]], b = copy.deepcopy(a), id(a) != id(b), id(a[0]) == id(b[0]), id(a[1]) != id(b[1]), id(a[1][0]) == id(b[1][0])  
 
 ###### 闭包 装饰器
-1. 闭包：指在方法内引用方法外定义的非全局变量。内部方法使用外部方法中定义的非全局变量。  
-   eg: [bi_bao_out](/script/bibao_decorator.py)
+闭包
+1. 定义：指在方法内引用方法外定义的非全局变量。内部方法使用外部方法中定义的非全局变量。  
+   eg: [bi_bao_outer](/script/bibao_decorator.py)
+2. 自由变量：如果一个变量在代码块中使用，但是没在代码快中定义，既未在本地作用域绑定的变量。
+3. 修改变量值：如果变量值是可变的，如list，可直接进行append；如果变量值是不可变的，如int自增，需要nonlocal声明。(python2没有nonlocal，需要转变成可变类型)  
+   eg: [bi_bao_nonlocal](/script/bibao_decorator.py)
 
 ###### 迭代器 生成器
 
