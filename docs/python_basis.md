@@ -52,6 +52,11 @@
 2. 自由变量：如果一个变量在代码块中使用，但是没在代码快中定义，既未在本地作用域绑定的变量。
 3. 修改变量值：如果变量值是可变的，如list，可直接进行append；如果变量值是不可变的，如int自增，需要nonlocal声明。(python2没有nonlocal，需要转变成可变类型)  
    eg: [bi_bao_nonlocal](/script/bibao_decorator.py)
+装饰器
+4. 定义：装饰器是闭包形式的一种实现，将函数作为一个参数，形成一个特殊的闭包。  
+   eg: 耗时统计[decorator_outer](/script/bibao_decorator.py)
+   eg: 参数化装饰器，装饰器工厂函数[decorator_factory](/script/bibao_decorator.py)
+5. 注意：增加@functools.wraps(func), 可以保持当前装饰器去装饰的函数的 __name__的值不变。
 
 ###### 迭代器 生成器
 
