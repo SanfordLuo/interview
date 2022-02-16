@@ -91,6 +91,7 @@
 ###### 设计模式
 1. 单例模式：保证一个类仅有一个实例，而且在全局只有一个访问点。  
    eg: 使用__new__关键字实现 [MySingleton](/script/design_patterns.py)  
-       使用函数装饰器实现单例 [my_singleton](/script/design_patterns.py)
-2. 工厂模式：
+       使用函数装饰器实现单例 [my_singleton](/script/design_patterns.py)  
+2. 工厂模式：定义一个用于创建对象的接口，根据不同的参数来决定实例化哪个子类。  
+   eg: [WhereHandler](/script/design_patterns.py)
    

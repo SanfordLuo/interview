@@ -1,3 +1,7 @@
+"""
+设计模式
+"""
+
 import functools
 
 
@@ -33,11 +37,46 @@ class TestMy(object):
     pass
 
 
-if __name__ == '__main__':
-    a = MySingleton()
-    b = MySingleton()
-    print(id(a) == id(b))
+class CHNHandler(object):
+    def __init__(self):
+        self.name = '大陆'
 
-    aa = TestMy()
-    bb = TestMy()
-    print(id(aa) == id(bb))
+
+class USHandler(object):
+    def __init__(self):
+        self.name = '美国'
+
+
+class Otherhandler(object):
+    def __init__(self):
+        self.name = '其他地区'
+
+
+class WhereHandler(object):
+    """
+    工厂模式：定义一个用于创建对象的接口，根据不同的参数来决定实例化哪个子类
+    """
+
+    @classmethod
+    def get_handler(cls, user_region):
+        if user_region == 'CHN':
+            return CHNHandler()
+        elif user_region == 'US':
+            return USHandler()
+        else:
+            return Otherhandler()
+
+
+if __name__ == '__main__':
+    # a = MySingleton()
+    # b = MySingleton()
+    # print(id(a) == id(b))
+
+    # aa = TestMy()
+    # bb = TestMy()
+    # print(id(aa) == id(bb))
+
+    my_handler = WhereHandler.get_handler('CHN')
+    print(my_handler.name)
+    my_handler = WhereHandler.get_handler('AUS')
+    print(my_handler.name)
