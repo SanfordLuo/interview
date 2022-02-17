@@ -6,6 +6,7 @@
    [静态方法-类方法-实例方法](/docs/python_basis.md#静态方法-类方法-实例方法)  
    [GIL-进程-线程-协程](/docs/python_basis.md#GIL-进程-线程-协程)  
    [设计模式](/docs/python_basis.md#设计模式)  
+   [linux相关](/docs/python_basis.md#linux)  
    
 ### 数据库
 Mysql, Redis, ES

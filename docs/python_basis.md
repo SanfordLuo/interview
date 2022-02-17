@@ -6,6 +6,7 @@
    [静态方法-类方法-实例方法](/docs/python_basis.md#静态方法-类方法-实例方法)  
    [GIL-进程-线程-协程](/docs/python_basis.md#GIL-进程-线程-协程)  
    [设计模式](/docs/python_basis.md#设计模式)  
+   [linux相关](/docs/python_basis.md#linux)  
 
 ###### 垃圾回收
 引用计数为主，标记-清除和隔代回收为辅  
@@ -96,3 +97,28 @@
 2. 工厂模式：定义一个用于创建对象的接口，根据不同的参数来决定实例化哪个子类。  
    eg: [WhereHandler](/script/design_patterns.py)
    
+###### linux相关
+1. 作用    
+   实时查询最后100行日志  
+   关键字搜索  
+   关键字搜索显示上下5行  
+   查询指定字符出现的行数  
+   查询多个字符或出现的行数  
+   查找指定文件的位置  
+   查看所有正在运行的进程  
+   查看端口号占用情况  
+   查看详细的进程信息  
+   起服务  
+   起定时脚本  
+2. 命令  
+   tail -100f test.log  
+   grep sanford test.log  
+   grep -C 5 sanford test.log  
+   grep -E sanford test.log | wc -l  
+   grep -E "sanford｜luo" test.log | wc -l  
+   find / -name test.log  
+   ps aux | less  
+   netstat -apn | grep port  
+   ps -aux | grep pid  
+   sudo supervisorctl -c /etc/supervisor.conf  
+   crontab -e  
