@@ -24,11 +24,14 @@
    请求头：Cookie，用户代理，主机名，请求参数类型等。  
 4. HTTP响应：状态行，响应头，响应体  
    状态行：响应码。200成功；401未授权；403服务器拒绝；503：服务器异常  
-   
 
 ###### Django
-客户端 <-> web 服务器(Nginx 为例) <-> socket <-> WSGI <-> Django
-
+客户端 <-> web 服务器(Nginx 为例) <-> socket <-> WSGI <-> Django  
+前端客户端：---js发送ajax请求到服务器程序  
+Nginx静态文件服务器：提供静态文件反向代理，  
+uwsgi服务器：接收HTTP请求报文，并解析，通过wsgi协议把HTTP请求对象(request)到框架程序  
+Django框架程序：---业务处理之后，HTTP响应对象(response)到uwsgi服务器  
+uwsgi服务器：---构造HTTP响应报文，HTTP响应返回到前端客户端  
 
 ###### Tornado
 1. Tornado四大组件  

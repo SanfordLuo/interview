@@ -54,3 +54,6 @@
    发布订阅模式是往交换机上绑定的每一个queue都发消息，路由模式则是根据路由键发到指定的queue中。  
 
 ###### Celery
+1. Celery: 消息中间件(Broker)，任务执行单元(Worker)，结果存储(Backend)。  
+2. 工作流程: Task client 提交任务到 Broker，Worker 监控 Broker 取出里面的任务并执行，执行结果保存在Backend中。  
+3. celery应用开发: celery实例初始化，任务定义，启动worker，调用任务。  
