@@ -1,6 +1,31 @@
 ### 框架部分
-1. [Django](/docs/framework.md#Django)
-   [Tornado](/docs/framework.md#Tornado)
+1. [HTTP/TCP](/docs/framework.md#HTTP/TCP)  
+   [Django](/docs/framework.md#Django)  
+   [Tornado](/docs/framework.md#Tornado)  
+
+###### HTTP/TCP
+1. 总结  
+   TCP属于传输层，HTTP属于应用层默认端口80，HTTPS是经过加密的更安全默认端口433。  
+2. TCP的三次握手四次挥手
+   三次握手：客户端发送syn，等待服务端接收确认；  
+            服务端接收，并且向客户端发送syn+ack；  
+            客户端接收，再往服务端发送回去接收到的ack。  
+   四次挥手：主动方发送一个fin，关闭发送数据并告诉被动方，但可以接收；  
+            被动方收到fin，向主动方发送一个ack，告诉主动方我知道了；  
+            被动方再发送一个fin，关闭发送数据并告诉主动方，但可以接收；  
+            主动发接收fin，向被动方发送一个ack，告诉被动方我知道了。  
+   注意：TIME_WAIT的作用是保证关闭连接后这个连接在网络中的所有数据包都过期。  
+         主动断开连接端：FIN_WAIT_2，TIME_WAIT；被动断开连接端：CLOSE_WAIT
+3. HTTP请求：状态行，请求头，请求体
+   状态行：包含请求方法，路径，协议。  
+   请求方法：GET, POST, PUT, DELETE
+      GET: 请求参数一般放在url中，安全性低，一般用于查询数据。  
+      POST：请求参数一般放在请求体中，安全性高。  
+   请求头：Cookie，用户代理，主机名，请求参数类型等。  
+4. HTTP响应：状态行，响应头，响应体  
+   状态行：响应码。200成功；401未授权；403服务器拒绝；503：服务器异常
+   
+   
 
 ###### Django
 客户端 <-> web 服务器(Nginx 为例) <-> socket <-> WSGI <-> Django
