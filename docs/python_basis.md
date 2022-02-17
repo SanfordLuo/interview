@@ -6,7 +6,7 @@
    [静态方法-类方法-实例方法](/docs/python_basis.md#静态方法-类方法-实例方法)  
    [GIL-进程-线程-协程](/docs/python_basis.md#GIL-进程-线程-协程)  
    [设计模式](/docs/python_basis.md#设计模式)  
-   [linux相关](/docs/python_basis.md#linux)  
+   [linux相关](/docs/python_basis.md#linux相关)  
 
 ###### 垃圾回收
 引用计数为主，标记-清除和隔代回收为辅  
