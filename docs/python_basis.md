@@ -105,6 +105,7 @@
    查询指定字符出现的行数  
    查询多个字符或出现的行数  
    查找指定文件的位置  
+   指定字符串全部替换
    查看所有正在运行的进程  
    查看端口号占用情况  
    查看详细的进程信息  
@@ -117,6 +118,7 @@
    grep -E sanford test.log | wc -l  
    grep -E "sanford｜luo" test.log | wc -l  
    find / -name test.log  
+   sed 's/oldStr/newStr/g' test.log #(不带g只替换第一个)
    ps aux | less  
    netstat -apn | grep port  
    ps -aux | grep pid  
