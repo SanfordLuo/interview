@@ -9,7 +9,9 @@
    [linux相关](/docs/python_basis.md#linux相关)  
    
 ### 数据库
-Mysql, Redis, ES
+1. [Mysql](/docs/database.md#Mysql)  
+   [Redis](/docs/database.md#Redis)  
+   [ES](/docs/database.md#ES)  
 
 ### 消息队列
    [Kafka](/docs/message_queue.md#Kafka)
