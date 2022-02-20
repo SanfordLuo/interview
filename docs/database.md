@@ -69,8 +69,8 @@
 8. 相关命令  
    &emsp;写入并设置过期时间，如果k存在则覆盖：set k v EX seconds; set k v PX milliseconds;  
    &emsp;只有k不存在时才进行设置，K存在时设置失败，不存在时获取锁成功，存在则获取锁失败：set k v NX; setnx k v;  
-   &emsp:只有K存在时才进行设置：set old_k new_v XX;  
-   &emsp:自增1，如果不存在则先初始化0再+1：incr k;  
-   &emsp:自减1，如果不存在则先初始化0再-1：decr k;  
+   &emsp;只有K存在时才进行设置：set old_k new_v XX;  
+   &emsp;自增1，如果不存在则先初始化0再+1：incr k;  
+   &emsp;自减1，如果不存在则先初始化0再-1：decr k;  
 
 ### ES
