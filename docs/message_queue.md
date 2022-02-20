@@ -1,10 +1,10 @@
-### 消息队列
+## 消息队列
    [Kafka](/docs/message_queue.md#Kafka)
    [RabbitMq](/docs/message_queue.md#RabbitMq)
    [Celery](/docs/message_queue.md#Celery)  
    作用：消息通讯，异步处理，应用解耦，流量削峰
 
-###### Kafka
+### Kafka
 1. Kafka特点  
    可靠性：分布式的、可区分的、数据可备份的、高度容错的  
    可扩展性：在无需停机的情况下可实现轻松扩展  
@@ -27,7 +27,7 @@
    [生产者](https://github.com/SanfordLuo/tool_demos/blob/master/script/kafka_producer.py)
    [消费者](https://github.com/SanfordLuo/tool_demos/blob/master/script/kafka_consumer.py)
 
-###### RabbitMq
+### RabbitMq
 1. 架构及工作流程  
    遵循的协议：AMQP协议，高级消息队列协议，进程间传递异步消息的一个网络协议。  
    工作流程：生产者(Publisher) ---> 交换机(Exchange) ---> 队列(Queue) ---> 消费者(Consumer)  
@@ -53,7 +53,7 @@
    发布/订阅模式，路由模式，主题模式都需要声明交换机，并且指定交换机类型。  
    发布订阅模式是往交换机上绑定的每一个queue都发消息，路由模式则是根据路由键发到指定的queue中。  
 
-###### Celery
+### Celery
 1. Celery: 消息中间件(Broker)，任务执行单元(Worker)，结果存储(Backend)。  
 2. 工作流程: Task client 提交任务到 Broker，Worker 监控 Broker 取出里面的任务并执行，执行结果保存在Backend中。  
 3. celery应用开发: celery实例初始化，任务定义，启动worker，调用任务。  

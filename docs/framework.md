@@ -1,9 +1,9 @@
-### 框架部分
+## 框架部分
 1. [HTTP/TCP](/docs/framework.md#HTTP/TCP)  
    [Django](/docs/framework.md#Django)  
    [Tornado](/docs/framework.md#Tornado)  
 
-###### HTTP/TCP
+### HTTP/TCP
 1. 总结  
    TCP属于传输层，HTTP属于应用层默认端口80，HTTPS是经过加密的更安全默认端口433。  
 2. TCP的三次握手四次挥手  
@@ -25,7 +25,7 @@
 4. HTTP响应：状态行，响应头，响应体  
    状态行：响应码。200成功；401未授权；403服务器拒绝；503：服务器异常  
 
-###### Django
+### Django
 客户端 <-> web 服务器(Nginx 为例) <-> socket <-> WSGI <-> Django  
 前端客户端：---js发送ajax请求到服务器程序  
 Nginx静态文件服务器：提供静态文件反向代理，  
@@ -33,7 +33,7 @@ uwsgi服务器：接收HTTP请求报文，并解析，通过wsgi协议把HTTP请
 Django框架程序：---业务处理之后，HTTP响应对象(response)到uwsgi服务器  
 uwsgi服务器：---构造HTTP响应报文，HTTP响应返回到前端客户端  
 
-###### Tornado
+### Tornado
 1. Tornado四大组件  
    ioloop实例：它是全局的tornado事件循环，服务器的引擎核心。  
    app实例：核心应用类，它会挂接一个服务端套接字端口对外提供服务，一个ioloop实例可以有多个app实例。  

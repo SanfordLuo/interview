@@ -1,10 +1,10 @@
-### 数据库
+## 数据库
 
 &emsp;[Mysql](/docs/database.md#Mysql)  
 &emsp;[Redis](/docs/database.md#Redis)  
 &emsp;[ES](/docs/database.md#ES)
 
-###### Mysql
+### Mysql
 
 1. 存储引擎  
    &emsp;InnoDB特点：  
@@ -43,6 +43,6 @@
    &emsp;全连接：返回左右两边的全部字段：select t_a.*, t_b.* from t_a full join t_b on t_a.user_id=t_b.user_id;  
    &emsp;内连接：只返回两边共有的字段：select t_a.*, t_b.* from t_a join t_b on t_a.user_id=t_b.user_id;  
 
-###### Redis
+### Redis
 
-###### ES
+### ES
