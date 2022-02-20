@@ -21,11 +21,7 @@
 &emsp;[RabbitMq](/docs/message_queue.md#RabbitMq)  
 &emsp;[Celery](/docs/message_queue.md#Celery)
 
-# 协议
-
-TCP, UDP, HTTP, HTTPS, Nginx
-
-# linux 容器
+# 容器
 
 # 框架部分
 
