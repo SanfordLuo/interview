@@ -66,5 +66,11 @@
    &emsp;&emsp;缺点：没有自动故障转移机制，假设master宕机，就不能写入数据了，slave就失去了作用，除非手动进行切换。  
    &emsp;哨兵模式：自动故障转移、集群监控、消息通知等功能。同时监视多个主从服务器，哨兵没隔1秒向所有主从ping，如果master未回复，如果投票过半则认为master下线，故障转移选举其中一个slave为master。  
    &emsp;redis集群：分布式数据存储方案，支持高并发同时容纳海量数据。集群通过数据分片sharding来进行数据的共享，同时提供复制和故障转移。  
+8. 相关命令  
+   &emsp;写入并设置过期时间，如果k存在则覆盖：set k v EX seconds; set k v PX milliseconds;  
+   &emsp;只有k不存在时才进行设置，K存在时设置失败，不存在时获取锁成功，存在则获取锁失败：set k v NX; setnx k v;  
+   &emsp:只有K存在时才进行设置：set old_k new_v XX;  
+   &emsp:自增1，如果不存在则先初始化0再+1：incr k;  
+   &emsp:自减1，如果不存在则先初始化0再-1：decr k;  
 
 ### ES
