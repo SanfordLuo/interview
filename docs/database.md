@@ -32,8 +32,8 @@
    &emsp;&emsp;undo log：是各个事务修改同一条记录的时候生成的历史记录，方便回滚，同时会生成一条版本链。  
    &emsp;&emsp;readView：是事务在进行快照读的时候生成的记录快照，用于判断事务的可见性。  
 5. 主从同步：默认异步的  
-   &emsp;主库提交完事务后写入binlog，推送binlog到从库，从库开启一个IO线程读取后记录到relay log中继日志中，从库再开启一个sql线程读取relay log并执行，完成同步。从库也记录自己的binlog。  
-   &emsp;全同步复制：所有的从库都执行完同步后才返回客户端；半同步复制：从库至少有一个返回ack确认给主库就认定写操作完成。  
+   &emsp;master提交完事务后写入binlog，推送binlog到slave，slave开启一个IO线程读取后记录到relay log中继日志中，slave再开启一个sql线程读取relay log并执行，完成同步。slave也记录自己的binlog。  
+   &emsp;全同步复制：所有的slave都执行完同步后才返回客户端；半同步复制：slave至少有一个返回ack确认给master就认定写操作完成。  
 6. sql语句  
    &emsp;查询所有出现过的name：select distinct name from t_user;  
    &emsp;查询至少出现两次的name：select name, count(name) from t_user group by name having count(name) > 1;  
@@ -44,5 +44,27 @@
    &emsp;内连接：只返回两边共有的字段：select t_a.*, t_b.* from t_a join t_b on t_a.user_id=t_b.user_id;  
 
 ### Redis
+1. 数据类型  
+   &emsp;基本数据类型：string、list、hash、set、zset  
+2. 速度快  
+   &emsp;1.完全基于内存操作；2.用C语言实现，支持的数据类型是做了大量优化之后的；3.使用单线程，无上下文切换的成本；4.基于非阻塞的IO多路复用机制。  
+3. 版本6.0之后的多线程  
+   &emsp;单线程处理客户端请求，多线程来处理数据的读写和协议解析，执行命令还是单线程。多线程提升IO读写效率。  
+4. 热key  
+   &emsp;突然有几十万请求访问同一个key，达到物理网卡上限，导致redis服务器宕机，直接打到db导致db服务不可用。  
+   &emsp;解决方案：1.利用二级缓存，jvm缓存，提前加载到jvm内存中；2.备份热key，打散到不同的redis服务器，热key+机器编号=新key。  
+5. 缓存击穿、缓存穿透、缓存雪崩  
+   &emsp;缓存击穿：单个key并发量过高，key过期时所有请求打到db上。解决方案：1.加锁更新，如果缓存中没有，对key加锁，去db读出来写入redis。  
+   &emsp;缓存穿透：缓存中的key不存在，每次请求都打到db上。解决方案：1.加一层布隆过滤器，存入redis的时候，通过散列函数将它映射成数组中的点，并且值为1。查询时如果布隆过滤器的值为0则直接返回。  
+   &emsp;缓存雪崩：大规模的缓存过期失效，大量请求打到db导致系统崩溃。解决方案：1.不同的key设置不同的过期时间，避免同时过期；2.限流，避免同时刻大量请求打到db；3.二级缓存，同热key。  
+6. 过期策略  
+   &emsp;惰性删除：当用到key的时候才会判读是否过期，如果过期则删除。  
+   &emsp;定期删除：定期扫描检查随机取一些key，删除过期的key。  
+   &emsp;redis的内存淘汰机制：如果还没删除并且内存达到界限触发。如：过期key中移除最少使用的；移除将要过期的。  
+7. 高可用  
+   &emsp;主从同步：1.slave发送命令到master；2.master接收之后执行bgsave生成RDB全量文件；3.master把slave的写命令记录到缓存中；4.master的bgsave执行完后发送RDB文件到slave，slave执行；5.master发送缓存中的写命令到slave，slave执行。  
+   &emsp;&emsp;缺点：没有自动故障转移机制，假设master宕机，就不能写入数据了，slave就失去了作用，除非手动进行切换。  
+   &emsp;哨兵模式：自动故障转移、集群监控、消息通知等功能。同时监视多个主从服务器，哨兵没隔1秒向所有主从ping，如果master未回复，如果投票过半则认为master下线，故障转移选举其中一个slave为master。  
+   &emsp;redis集群：分布式数据存储方案，支持高并发同时容纳海量数据。集群通过数据分片sharding来进行数据的共享，同时提供复制和故障转移。  
 
 ### ES
