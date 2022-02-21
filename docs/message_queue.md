@@ -21,7 +21,7 @@
 3. 消息确认acks：0，1，all(-1)  
    0：生产者不会等待任何服务器的响应，包括leader和flower，默认已发送，但不保证发送成功。  
    1：保证至少leader副本成功写入，但不保证flower已经同步。  
-   all：保证所有flower都已经同步完成。
+   all：保证所有flower都已经同步完成。  
 4. 注意事项  
    缓冲池满了：kafka的缓冲池会出现满了的情况，因此需要回收。最大值log.retention.bytes，过期时间(log.retention.hours)。  
              对于超过最大值的按照partitions下的segment为单位进行删除，对于过期时间的则根据时间策略删除。  
