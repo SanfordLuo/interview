@@ -18,12 +18,16 @@
    Zookeeper存储broker信息: 包含各个broker的服务器信息、Topic信息.  
    Zookeeper存储消费者信息: 主要存储每个消费者消费的topic的offset的值。  
    offset偏移量：记录队列中当前读取消息的位置。如果未提交偏移量latest从最新产生的开始消费所以会丢失数据，earliest从上次提交偏移量开始消费。  
-3. 注意事项  
+3. 消息确认acks：0，1，all(-1)  
+   0：生产者不会等待任何服务器的响应，包括leader和flower，默认已发送，但不保证发送成功。  
+   1：保证至少leader副本成功写入，但不保证flower已经同步。  
+   all：保证所有flower都已经同步完成。
+4. 注意事项  
    缓冲池满了：kafka的缓冲池会出现满了的情况，因此需要回收。最大值log.retention.bytes，过期时间(log.retention.hours)。  
              对于超过最大值的按照partitions下的segment为单位进行删除，对于过期时间的则根据时间策略删除。  
    数据传输的事务：最多一次：消费者先提交偏移量再处理事务；最少一次：先处理事务再提交偏移量。  
    消息丢失：生产者push消息的时候broker挂了；消费者已经提交偏移量但是处理消息的时候异常了；leader所在的broker挂掉时消息还未完全备份到follower。  
-4. 示例
+5. 示例
    [生产者](https://github.com/SanfordLuo/tool_demos/blob/master/script/kafka_producer.py)
    [消费者](https://github.com/SanfordLuo/tool_demos/blob/master/script/kafka_consumer.py)
 
