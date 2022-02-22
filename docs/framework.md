@@ -48,7 +48,17 @@ uwsgi服务器：---构造HTTP响应报文，HTTP响应返回到前端客户端
 4. 如何实现异步，tornado默认是单进程单线程的  
    使用通过协程的方式实现异步：添加异步装饰器 @tornado.gen.coroutine，内部需要用到yield关键字。  
    python3.5以上可以使用async、await来实现。  
+   调用异步方法会返回一个feature对象，Application会进行判断，如果是一个feature对象，去await这个feature对象会拿到这个response。  
 5. 优点  
    5.1 Tornado的核心是ioloop和iostream这两个模块，前者提供了一个高效的I/O事件循环，后者则封装了一个无阻塞的socket。  
    通过向ioloop中添加网络I/O事件，利用无阻塞的socket，再搭配相应的回调函数，便可达到梦寐以求的高效异步执行。  
    5.2 使用同一个TCP连接来发送和接收多个HTTP请求/应答，而不是为每一个新的请求/应答打开新的连接的方法。  
+6. async  
+   python无内置的event loop，同步异步IO是共存的，在asyncio模块提供支持了event loop，不主动调用的话就不会启动。  
+   async的作用表示这个函数必须在event loop里运行，而await前后的代码至少要分两段，在event loop里顺序依此运行。  
+      loop = asyncio.new_event_loop()  # 创建事件循环  
+      asyncio.set_event_loop(loop)  # 指定为当前线程的事件循环  
+      loop = asyncio.get_event_loop()  # 初始情况下在主线程可以直接创建事件循环，对于其他线程会报错  
+      tasks.append(loop.create_task(async_test()))  # 异步函数调用加入事件队列  
+      loop.run_until_complete(asyncio.wait(tasks))  # 执行事件队列，直到最晚的一个事件被处理完毕  
+      loop.close()  # 手动关闭事件循环  
