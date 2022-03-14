@@ -111,6 +111,7 @@
    查看详细的进程信息  
    起服务  
    起定时脚本  
+   查日志
 2. 命令  
    tail -100f test.log  
    grep sanford test.log  
@@ -124,3 +125,4 @@
    ps -aux | grep pid  
    sudo supervisorctl -c /etc/supervisor.conf  
    crontab -e  
+   more test.log | grep -E "start|end" -C5  
