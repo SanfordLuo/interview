@@ -7,7 +7,7 @@ import asyncio
 import json
 from functools import wraps
 
-logger = logging.getLogger("service")
+logger = logging.getLogger("server")
 
 
 def run_time(func):
