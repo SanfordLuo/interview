@@ -1,30 +1,41 @@
 # python 基础
 
-&emsp;[垃圾回收](/docs/python_basis.md#垃圾回收)  
-&emsp;[深浅拷贝](/docs/python_basis.md#深浅拷贝)  
-&emsp;[闭包-装饰器](/docs/python_basis.md#闭包-装饰器)  
-&emsp;[迭代器-生成器](/docs/python_basis.md#迭代器-生成器)  
-&emsp;[静态方法-类方法-实例方法](/docs/python_basis.md#静态方法-类方法-实例方法)  
-&emsp;[GIL-进程-线程-协程](/docs/python_basis.md#GIL-进程-线程-协程)  
-&emsp;[设计模式](/docs/python_basis.md#设计模式)  
-&emsp;[linux相关](/docs/python_basis.md#linux相关)
+[垃圾回收](/docs/python_basis.md#垃圾回收)  
+[深浅拷贝](/docs/python_basis.md#深浅拷贝)  
+[闭包-装饰器](/docs/python_basis.md#闭包-装饰器)  
+[迭代器-生成器](/docs/python_basis.md#迭代器-生成器)  
+[静态方法-类方法-实例方法](/docs/python_basis.md#静态方法-类方法-实例方法)  
+[GIL-进程-线程-协程](/docs/python_basis.md#GIL-进程-线程-协程)  
+[设计模式](/docs/python_basis.md#设计模式)  
+[linux相关](/docs/python_basis.md#linux相关)
 
 # 数据库
 
-&emsp;[Mysql](/docs/database.md#Mysql)  
-&emsp;[Redis](/docs/database.md#Redis)  
-&emsp;[ES](/docs/database.md#ES)
+[Mysql](/docs/database.md#Mysql)  
+[Redis](/docs/database.md#Redis)  
+[ES](/docs/database.md#ES)
 
 # 消息队列
 
-&emsp;[Kafka](/docs/message_queue.md#Kafka)  
-&emsp;[RabbitMq](/docs/message_queue.md#RabbitMq)  
-&emsp;[Celery](/docs/message_queue.md#Celery)
+[Kafka](/docs/message_queue.md#Kafka)  
+[RabbitMq](/docs/message_queue.md#RabbitMq)  
+[Celery](/docs/message_queue.md#Celery)
 
 # 容器
 
+[Docker](/docs/container.md#Docker)  
+[k8s](/docs/container.md#k8s)
+
 # 框架部分
 
-&emsp;[HTTP/TCP](/docs/framework.md#HTTP/TCP)  
-&emsp;[Django](/docs/framework.md#Django)  
-&emsp;[Tornado](/docs/framework.md#Tornado)  
+[HTTP/TCP](/docs/framework.md#HTTP/TCP)  
+[WSGI/uwsgi/uWSGI](/docs/framework.md#WSGI/uwsgi/uWSGI)  
+[Django](/docs/framework.md#Django)  
+[Tornado](/docs/framework.md#Tornado)  
+[Flask](/docs/framework.md#Flask)  
+[FastAPI](/docs/framework.md#FastAPI)
+
+# 数据分析
+
+[pandas](/docs/data_analysis.md#pandas)  
+[numpy](/docs/data_analysis.md#numpy)

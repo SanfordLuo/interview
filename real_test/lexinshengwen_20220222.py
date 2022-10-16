@@ -5,25 +5,31 @@
 import json
 
 
-def get_ranking():
-    with open('score.json', encoding='utf8') as f:
-        my_dict = json.load(f)
+def run():
+    with open('./score.json') as f:
+        data = json.load(f)
 
-    new_ranking = {}
-    for kk, vv in my_dict.items():
-        child = sorted(vv.items(), key=lambda vv: vv[1])
-        new = []
-        for idx, v in enumerate(child):
+    new_dict = {}
+
+    for item in data.items():
+        new_child = sorted(item[1].items(), key=lambda x: x[1], reverse=True)
+        # print(new_child)
+
+        new_new_child = {}
+        for idx, v_child in enumerate(new_child):
             if idx == 0:
-                new.append([v[0], 1])
+                new_new_child[v_child[0]] = 1
             else:
-                if v[1] == child[idx - 1][1]:
-                    new.append([v[0], new[idx - 1][1]])
+                if v_child[1] == new_child[idx - 1][1]:
+                    old_name = new_child[idx - 1][0]
+                    new_new_child[v_child[0]] = new_new_child[old_name]
                 else:
-                    new.append([v[0], idx + 1])
-        new_ranking[kk] = {_[0]: _[1] for _ in new}
-    print(new_ranking)
+                    new_new_child[v_child[0]] = idx + 1
+
+        new_dict[item[0]] = new_new_child
+
+    print(new_dict)
 
 
 if __name__ == '__main__':
-    get_ranking()
+    run()

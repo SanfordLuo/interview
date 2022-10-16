@@ -1,9 +1,11 @@
 ## 框架部分
 
 1. [HTTP/TCP](/docs/framework.md#HTTP/TCP)  
+   [WSGI/uwsgi/uWSGI](/docs/framework.md#WSGI/uwsgi/uWSGI)  
    [Django](/docs/framework.md#Django)  
    [Tornado](/docs/framework.md#Tornado)  
-   [Flask](/docs/framework.md#Flask)
+   [Flask](/docs/framework.md#Flask)  
+   [FastAPI](/docs/framework.md#FastAPI)
 
 ### HTTP/TCP
 
@@ -28,14 +30,40 @@
 4. HTTP响应：状态行，响应头，响应体  
    状态行：响应码。200成功；401未授权；403服务器拒绝；503：服务器异常
 
+### WSGI/uwsgi/uWSGI
+
+1. WSGI/ASGI：协议  
+   是一种通信协议，保证web服务器(uWSGI)与应用服务器(Python web程序)之间互相通信。  
+   协议：web程序必须有一个可调用对象，可调用对象接收两个参数：environ-包含请求的所有信息；start_response-可调用对象中调用的函数。
+2. uwsgi：协议  
+   uwsgi协议是uWSGI服务器使用的本地协议。
+3. uWSGI：服务器  
+   实现了uwsgi和WSGI两种协议的Web服务器。
+4. Uvicorn：服务器  
+   一个快速的ASGI服务器，基于uvloop和httptools构建的。
+
 ### Django
 
-客户端 <-> web 服务器(Nginx 为例) <-> socket <-> WSGI <-> Django  
-前端客户端：---js发送ajax请求到服务器程序  
-Nginx静态文件服务器：提供静态文件反向代理，  
-uwsgi服务器：接收HTTP请求报文，并解析，通过wsgi协议把HTTP请求对象(request)到框架程序  
-Django框架程序：---业务处理之后，HTTP响应对象(response)到uwsgi服务器  
-uwsgi服务器：---构造HTTP响应报文，HTTP响应返回到前端客户端
+1. 生命周期  
+   客户端 <-> web 服务器(Nginx 为例) <-> socket <-> WSGI <-> Django  
+   前端客户端：---js发送ajax请求到服务器程序  
+   Nginx静态文件服务器：提供静态文件反向代理，  
+   uwsgi服务器：接收HTTP请求报文，并解析，通过wsgi协议把HTTP请求对象(request)到框架程序  
+   Django框架程序：---业务处理之后，HTTP响应对象(response)到uwsgi服务器  
+   uwsgi服务器：---构造HTTP响应报文，HTTP响应返回到前端客户端
+
+2. DRF：Django REST framework: 构建restful接口的工具包  
+   视图：APIView，ListApiView，UpdateApiView；   
+   解析器：根据用户请求头信息将请求参数进行解析；  
+   序列化：只入参instance，将model模型对象转换为json格式的字符串，对返回的数据进行校验。可自定义校验。  
+   反序列化：必须入参data，将json格式的字符转成字典再转换为model对象，对接收的数据进行校验保存。可自定义校验。  
+   分页器：查询出所有的数据进行分页。  
+   路由组件：注册自动生成路由；action装饰器；  
+   接口认证和权限；访问频率限制；版本控制；
+
+3. 面试题集  
+   https://blog.csdn.net/qq_40558166/article/details/102741382  
+   https://blog.csdn.net/qq_40558166/article/details/107187090
 
 ### Tornado
 
@@ -71,7 +99,7 @@ uwsgi服务器：---构造HTTP响应报文，HTTP响应返回到前端客户端
 ### Flask
 
 1. 工作流程  
-   使用app.run()方法来启动 flask 应用，底层会创建一个WSGI服务器；route装饰器添加url到map，添加函数名到视图函数；  
+   使用app.run()方法来启动 flask 应用，底层会创建一个WSGI服务器，继承werkzeug；route装饰器添加url到map，添加函数名到视图函数；  
    当服务器收到http请求时，去调用app，实际是调用底层的__call__方法，__call__方法是把类的实例化对象变成了可调用对象；  
    call方法底层是调用的wsgi_app()，wsgi_app()开始处理请求；  
    wsgi_app生成request请求对象和请求上下文环境；  
@@ -91,5 +119,17 @@ uwsgi服务器：---构造HTTP响应报文，HTTP响应返回到前端客户端
 
    https://zhuanlan.zhihu.com/p/166052183
 
-3. flask_sqlalchemy
+3. flask_sqlalchemy  
    https://www.cnblogs.com/kaerxifa/p/11412913.html
+
+### FastAPI
+
+1. 启动  
+   纯web框架，不带WSGI或者ASGI的协议的服务器启动功能，结合uvicorn启动。  
+   uvicorn是一个快速的ASGI服务器，uvicorn是基于uvloop和httptools构建的。  
+   uvicorn.run(app, host="0.0.0.0", port=8001, debug=True)
+
+2. 功能  
+   APIRouter(): 类似flask的蓝天Blueprint，将请求分类；  
+   @app.on_event('startup')和@app.on_event('shutdown')可以做程序启动前后的处理。  
+   @app.middleware("http")：中间件，可计算请求时间，打印请求日志，获取请求头信息，写入请求头信息；  
