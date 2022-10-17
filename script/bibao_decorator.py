@@ -5,13 +5,12 @@ import time
 import functools
 
 
-def bi_bao_outer():
-    name = 'sanford'
+def bibao_test_out(x):
+    def bibao_test_in(y):
+        print(x, y)
+        return x + y
 
-    def bi_bao_inner():
-        return name
-
-    return bi_bao_inner
+    return bibao_test_in
 
 
 num_a = 3
@@ -88,9 +87,9 @@ def test_decorator_other_1(sleep_time):
 
 
 if __name__ == '__main__':
-    # test = bi_bao_outer()
+    # test = bibao_test_out(3)
     # print(test)
-    # print(test())
+    # print(test(4))
 
     # test_01 = bi_bao_nonlocal()
     # print(test_01())
